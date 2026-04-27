@@ -487,45 +487,6 @@ button {
   align-content: end;
 }
 
-.hero-stage-panel {
-  position: absolute;
-  z-index: 3;
-  padding: 14px 16px;
-  border: 1px solid rgba(0, 240, 255, 0.24);
-  border-radius: var(--radius);
-  background: rgba(5, 20, 36, 0.52);
-  backdrop-filter: blur(12px);
-  box-shadow: var(--glow-soft);
-}
-
-.hero-stage-panel strong {
-  display: block;
-  margin-top: 8px;
-  color: var(--foreground);
-  font-family: "Space Grotesk", sans-serif;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.hero-stage-panel-top {
-  top: 28px;
-  right: 28px;
-  width: min(24%, 220px);
-}
-
-.hero-stage-panel-right {
-  right: 28px;
-  bottom: 132px;
-  width: min(28%, 260px);
-}
-
-.hero-stage-panel-bottom {
-  right: 28px;
-  left: auto;
-  bottom: 28px;
-  width: min(30%, 300px);
-}
-
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -710,12 +671,6 @@ button {
 .project-visual-label {
   position: absolute;
   z-index: 3;
-}
-
-.hero-visual-overlay-stage {
-  right: 28px;
-  bottom: 28px;
-  max-width: 34%;
 }
 
 .hero-visual-overlay {
@@ -1166,22 +1121,12 @@ button {
     width: min(56%, 680px);
   }
 
-  .hero-stage-panel-right,
-  .hero-visual-overlay-stage {
-    display: none;
-  }
-
-  .hero-stage-panel-top,
-  .hero-stage-panel-bottom {
-    width: 260px;
-  }
-
   .project-stage-copy {
     width: min(52%, 520px);
   }
 
   #projects .view-grid-detail {
-    grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+    grid-template-columns: 1fr;
   }
 
   #projects .project-stage-meta {
@@ -1200,11 +1145,6 @@ button {
     min-height: 38px;
     padding-inline: 12px;
     font-size: 13px;
-  }
-
-  .hero-stage-panel-top,
-  .hero-stage-panel-bottom {
-    width: 220px;
   }
 
   .project-stage-meta {
@@ -1247,11 +1187,6 @@ button {
     margin-block: 0 14px;
   }
 
-  .hero-stage-panel-top,
-  .hero-stage-panel-bottom {
-    padding: 12px 14px;
-  }
-
   .project-stage-copy {
     padding: 16px;
   }
@@ -1272,8 +1207,6 @@ button {
   }
 
   .hero-copy-overlay,
-  .hero-stage-panel,
-  .hero-visual-overlay-stage,
   .project-stage-copy,
   .project-stage-meta,
   .project-stage-diagram {
