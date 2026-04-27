@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create *)",
+      "Bash(npx create-vite@4 . --template react-ts)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(findstr /n \"export default function\\\\|function HomePage\\\\|function App\" src\\\\App.tsx)",
+      "Bash(npx tsc *)",
+      "WebSearch",
+      "WebFetch(domain:coverr.co)",
+      "WebFetch(domain:www.pexels.com)",
+      "WebFetch(domain:mixkit.co)",
+      "WebFetch(domain:pixabay.com)",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "WebFetch(domain:images.pexels.com)",
+      "Bash(dir \"D:\\\\POST-DOC\\\\CV_Homepage\" /b)"
+    ]
+  }
+}
