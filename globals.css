@@ -30,9 +30,15 @@
   box-sizing: border-box;
 }
 
+img,
+video {
+  max-width: 100%;
+}
+
 html,
 body {
   margin: 0;
+  width: 100%;
   min-height: 100%;
 }
 
@@ -43,6 +49,8 @@ body {
     linear-gradient(135deg, var(--surface-container-lowest), var(--background) 45%, #071a2b 100%);
   color: var(--foreground);
   font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body::before {
@@ -80,6 +88,7 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  min-width: 0;
   margin-bottom: 20px;
   padding: 12px 16px;
   border: 1px solid rgba(239, 244, 255, 0.12);
@@ -93,6 +102,7 @@ button {
   display: inline-flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 }
 
 .brand-mark {
@@ -107,6 +117,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: 2px;
+  min-width: 0;
 }
 
 .brand-copy strong,
@@ -142,6 +153,8 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  min-width: 0;
+  justify-content: flex-end;
 }
 
 .nav-tab,
@@ -157,6 +170,7 @@ button {
   background: rgba(255, 255, 255, 0.018);
   color: var(--foreground);
   cursor: pointer;
+  white-space: nowrap;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
 }
 
@@ -200,11 +214,17 @@ button {
 
 .view-grid-detail {
   grid-template-columns: 0.92fr 1.08fr;
+  align-items: start;
+}
+
+.view-grid-experience .window-span-2 {
+  grid-column: 1 / -1;
 }
 
 .window {
   position: relative;
   overflow: hidden;
+  min-width: 0;
   min-height: 260px;
   border: 1px solid rgba(132, 148, 149, 0.2);
   border-radius: var(--radius);
@@ -256,6 +276,63 @@ button {
   min-height: 640px;
 }
 
+#projects .window-detail {
+  overflow: visible;
+}
+
+#projects .window-detail .window-body {
+  overflow: visible;
+}
+
+#projects .project-stage {
+  display: grid;
+  gap: 14px;
+  min-height: auto;
+  padding: 18px;
+}
+
+#projects .project-stage-visual,
+#projects .project-stage-copy,
+#projects .project-stage-meta,
+#projects .project-stage-diagram,
+#projects .project-visual-label {
+  position: relative;
+  inset: auto;
+  width: auto;
+  max-width: none;
+}
+
+#projects .project-stage-visual {
+  min-height: 320px;
+  border-radius: var(--radius-lg);
+}
+
+#projects .project-visual {
+  height: 320px;
+}
+
+#projects .project-stage-copy {
+  order: 2;
+}
+
+#projects .project-stage-meta,
+#projects .project-stage-diagram {
+  order: 3;
+}
+
+#projects .project-stage-diagram {
+  margin-top: 0;
+}
+
+#projects .project-visual-label {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: auto;
+  max-width: min(70%, 420px);
+  text-align: right;
+}
+
 .window-hero {
   grid-column: 1 / -1;
 }
@@ -303,13 +380,14 @@ button {
 .timeline-item h3,
 .mini-window strong {
   color: var(--foreground);
+  overflow-wrap: anywhere;
 }
 
 .hero-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.45fr) 260px;
   gap: 20px;
-  min-height: 620px;
+  min-height: clamp(680px, calc(100vh - 120px), 780px);
 }
 
 .hero-copy {
@@ -321,10 +399,11 @@ button {
 
 .hero-copy-overlay {
   position: absolute;
-  bottom: 44px;
+  top: clamp(32px, 4vw, 52px);
+  bottom: auto;
   left: 36px;
   z-index: 3;
-  width: min(66%, 880px);
+  width: min(58%, 760px);
   padding: 0;
   border: 0;
   border-radius: 0;
@@ -336,7 +415,7 @@ button {
 .hero-stage {
   position: relative;
   overflow: hidden;
-  min-height: 620px;
+  min-height: clamp(680px, calc(100vh - 120px), 780px);
   border: 1px solid rgba(0, 240, 255, 0.24);
   border-radius: 28px;
   background: rgba(1, 15, 31, 0.54);
@@ -441,9 +520,10 @@ button {
 }
 
 .hero-stage-panel-bottom {
-  left: 28px;
+  right: 28px;
+  left: auto;
   bottom: 28px;
-  width: min(44%, 420px);
+  width: min(30%, 300px);
 }
 
 .hero-actions {
@@ -464,7 +544,7 @@ button {
   margin: 0;
   color: var(--cream);
   font-family: "Anton", sans-serif;
-  font-size: 96px;
+  font-size: clamp(58px, min(6.8vw, 10vh), 96px);
   font-weight: 400;
   letter-spacing: 0;
   line-height: 0.88;
@@ -564,6 +644,7 @@ button {
 .select-card {
   position: relative;
   width: 100%;
+  min-width: 0;
   padding: 16px;
   border: 1px solid rgba(132, 148, 149, 0.18);
   border-radius: var(--radius);
@@ -668,10 +749,19 @@ button {
   bottom: 14px;
 }
 
+#projects .project-visual-label {
+  top: auto;
+  right: 24px;
+  bottom: 24px;
+  left: auto;
+  max-width: min(42%, 320px);
+  text-align: right;
+}
+
 .project-stage {
   position: relative;
   overflow: hidden;
-  min-height: 620px;
+  min-height: clamp(560px, 68vh, 680px);
   border: 1px solid rgba(0, 240, 255, 0.2);
   border-radius: var(--radius-lg);
   background: rgba(1, 15, 31, 0.42);
@@ -715,12 +805,13 @@ button {
 .project-stage-diagram {
   position: absolute;
   z-index: 3;
+  min-width: 0;
 }
 
 .project-stage-copy {
   top: 24px;
   left: 24px;
-  width: min(58%, 640px);
+  width: min(54%, 600px);
   padding: 20px;
   border: 1px solid rgba(0, 240, 255, 0.18);
   border-radius: var(--radius-lg);
@@ -729,7 +820,7 @@ button {
 }
 
 .project-stage-meta {
-  width: min(25%, 220px);
+  width: min(28%, 230px);
   padding: 14px 16px;
   border: 1px solid rgba(0, 240, 255, 0.22);
   border-radius: var(--radius);
@@ -791,6 +882,7 @@ button {
   margin-top: 8px;
   color: var(--foreground);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .recognition-grid {
@@ -971,6 +1063,18 @@ button {
   cursor: pointer;
 }
 
+.select-card > div {
+  min-width: 0;
+}
+
+.select-card strong,
+.select-card span,
+.project-stage-copy h2,
+.publication-figure-frame,
+.contact-grid a {
+  overflow-wrap: anywhere;
+}
+
 .select-card.is-selected {
   border-color: rgba(0, 240, 255, 0.72);
   box-shadow: var(--glow-strong);
@@ -1053,6 +1157,107 @@ button {
   margin-top: 0;
 }
 
+@media (max-width: 1280px) {
+  .hero-display {
+    font-size: clamp(56px, 6.4vw, 82px);
+  }
+
+  .hero-copy-overlay {
+    width: min(56%, 680px);
+  }
+
+  .hero-stage-panel-right,
+  .hero-visual-overlay-stage {
+    display: none;
+  }
+
+  .hero-stage-panel-top,
+  .hero-stage-panel-bottom {
+    width: 260px;
+  }
+
+  .project-stage-copy {
+    width: min(52%, 520px);
+  }
+
+  #projects .view-grid-detail {
+    grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  #projects .project-stage-meta {
+    display: none;
+  }
+}
+
+@media (max-width: 1180px) and (min-width: 1101px) {
+  .topbar {
+    align-items: flex-start;
+    border-radius: 24px;
+  }
+
+  .nav-tab,
+  .button {
+    min-height: 38px;
+    padding-inline: 12px;
+    font-size: 13px;
+  }
+
+  .hero-stage-panel-top,
+  .hero-stage-panel-bottom {
+    width: 220px;
+  }
+
+  .project-stage-meta {
+    display: none;
+  }
+
+  .project-stage-copy {
+    width: min(58%, 560px);
+  }
+}
+
+@media (max-height: 760px) and (min-width: 1101px) {
+  .hero-layout,
+  .hero-stage {
+    min-height: 640px;
+  }
+
+  .project-stage {
+    min-height: 540px;
+  }
+
+  .hero-copy-overlay {
+    top: 28px;
+  }
+
+  .hero-display {
+    font-size: clamp(52px, min(5.8vw, 8.8vh), 76px);
+  }
+
+  .hero-accent {
+    margin-bottom: 8px;
+    font-size: 34px;
+  }
+
+  .hero-subtext {
+    margin: 20px 0 14px;
+  }
+
+  .hero-copy-overlay .lede {
+    margin-block: 0 14px;
+  }
+
+  .hero-stage-panel-top,
+  .hero-stage-panel-bottom {
+    padding: 12px 14px;
+  }
+
+  .project-stage-copy {
+    padding: 16px;
+  }
+
+}
+
 @media (max-width: 1100px) {
   .view-grid,
   .view-grid-home,
@@ -1085,11 +1290,11 @@ button {
     display: grid;
     gap: 14px;
     padding: 18px;
-    min-height: 760px;
+    min-height: auto;
   }
 
   .hero-display {
-    font-size: 72px;
+    font-size: clamp(52px, 8.8vw, 72px);
   }
 
   .contact-display {
@@ -1131,6 +1336,12 @@ button {
   .topbar {
     align-items: start;
     flex-direction: column;
+    border-radius: 22px;
+  }
+
+  .nav {
+    justify-content: flex-start;
+    width: 100%;
   }
 
   .window-body {
@@ -1147,11 +1358,11 @@ button {
   }
 
   .hero-stage {
-    min-height: 740px;
+    min-height: auto;
   }
 
   .hero-display {
-    font-size: 44px;
+    font-size: clamp(38px, 12vw, 44px);
   }
 
   .contact-display {
